@@ -1,0 +1,53 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="app">
+<head>
+<base href="/" />
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Node/Angular App</title>
+
+    <!-- SCROLLS -->
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #user-list              { margin-bottom:30px; }
+    </style>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL users -->
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <!-- <h2>numbers of users: <span class="label label-info">{{ users.length }}</span></h2> -->
+        </div>
+        <div class="row"><a href="/" class="btn btn-default">Main</a></div>
+        <div class="row"><a href="/users" class="btn btn-default">Users List</a></div>
+        <div class="row"><a href="/addUser" class="btn btn-default">Add User</a></div>
+
+        <div ng-view></div>
+
+        
+    
+
+      
+    </div>
+ <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script><!-- load angular -->
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"></script>
+     <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+     <script src="js/controllers/userDetailsController.js"></script> <!-- load up our controller -->
+     <script src="js/controllers/usersListController.js"></script> <!-- load up our controller -->
+     <script src="js/controllers/addUserController.js"></script> <!-- load up our controller -->
+    <script src="js/services/usersService.js"></script> <!-- load our todo service -->
+    <script src="js/core.js"></script>
+</body>
+</html>

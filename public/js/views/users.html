@@ -1,0 +1,16 @@
+<div id="user-list" class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <!-- LOOP OVER THE users IN $scope.users -->
+        <ul ng-repeat="user in users">
+            <li>
+                <a href="/user/{{user._id}}" ng-show="!editData[user._id]">{{ user.name }}  {{user.lastName}} </a>
+                <span ng-show="editData[user._id]"><input type="text" ng-model="user.name"></span>
+                <span ng-show="editData[user._id]"><input type="text" ng-model="user.lastName"></span>
+                <span ng-show="!isEdit" class="btn btn-default" ng-click="deleteUser(user._id)">delete</span>
+                <span ng-show="!isEdit" class="btn btn-info" ng-click="editUser(user._id)">edit</span>
+                <span ng-show="editData[user._id]" class="btn btn-info" ng-click="saveEditUser(user)">save</span>
+                <span ng-show="editData[user._id]" class="btn btn-info" ng-click="cancel()">cancel</span>
+            </li>
+        </ul>
+    </div>
+</div>
