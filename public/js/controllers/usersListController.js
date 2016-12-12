@@ -1,6 +1,17 @@
 angular.module('userController2', [])
 
 .controller('usersList', function($scope, User) {
+
+	$scope.currentPage = 0;
+    $scope.pageSize = 3;
+
+     $scope.numberOfPages=function(){
+        return Math.ceil($scope.getData().length/$scope.pageSize);                
+    }
+
+    $scope.getData = function () {
+    	return $scope.users;
+    }
 	  
        User.get()
             .success(function(data) {
@@ -21,4 +32,9 @@ angular.module('userController2', [])
                 });
         };
 
+}).filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
 });

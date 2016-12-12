@@ -1,7 +1,7 @@
 <div id="user-list" class="row">
     <div class="col-sm-4 col-sm-offset-4">
         <!-- LOOP OVER THE users IN $scope.users -->
-        <ul ng-repeat="user in users">
+        <ul ng-repeat="user in users | orderBy:'+name' | startFrom:currentPage*pageSize | limitTo:pageSize" >
             <li>
                 <a href="/user/{{user._id}}" ng-show="!editData[user._id]">{{ user.name }}  {{user.lastName}} </a>
                 <span ng-show="editData[user._id]"><input type="text" ng-model="user.name"></span>
@@ -12,5 +12,12 @@
                 <span ng-show="editData[user._id]" class="btn btn-info" ng-click="cancel()">cancel</span>
             </li>
         </ul>
+        <button class="btn btn-default" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <button class="btn btn-default" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
     </div>
 </div>

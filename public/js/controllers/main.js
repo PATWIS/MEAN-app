@@ -12,16 +12,7 @@ angular.module('userController', ['ngRoute'])
        
 
         // delete a todo after checking it
-        $scope.deleteUser = function(id) {
-            User.delete(id)
-                .success(function(data) {
-                    $scope.users = data;
-                    $location.path('/users');
-                })
-                .error(function(data) {
-                    alert('Error: ' + data);
-                });
-        };
+  
 
         $scope.editUser = function(id) {
             console.log(id);
