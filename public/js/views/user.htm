@@ -1,3 +1,10 @@
-<h1>User Details</h1>
+<h2 class="page-header">User Details</h2>
+<section class="well">
+	<p><label for="">Name:</label> {{user.name}}</p>
+<p><label for="">Last name:</label> {{user.lastName}}</p>
+</section>
 
-<p>{{user.name}} {{user.lastName}}</p>
+<section>
+	 <button ng-show="!isEdit" class="btn btn-danger" ng-click="deleteUser(user._id)">delete User</button>
+</section>
+

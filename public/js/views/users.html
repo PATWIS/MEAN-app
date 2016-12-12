@@ -6,18 +6,21 @@
                 <a href="/user/{{user._id}}" ng-show="!editData[user._id]">{{ user.name }}  {{user.lastName}} </a>
                 <span ng-show="editData[user._id]"><input type="text" ng-model="user.name"></span>
                 <span ng-show="editData[user._id]"><input type="text" ng-model="user.lastName"></span>
-                <span ng-show="!isEdit" class="btn btn-default" ng-click="deleteUser(user._id)">delete</span>
+                <!-- <span ng-show="!isEdit" class="btn btn-default" ng-click="deleteUser(user._id)">delete</span> -->
                 <span ng-show="!isEdit" class="btn btn-info" ng-click="editUser(user._id)">edit</span>
                 <span ng-show="editData[user._id]" class="btn btn-info" ng-click="saveEditUser(user)">save</span>
                 <span ng-show="editData[user._id]" class="btn btn-info" ng-click="cancel()">cancel</span>
             </li>
         </ul>
-        <button class="btn btn-default" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        <div ng-show="users.length > 3">
+            <button class="btn btn-default" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
         Previous
     </button>
     {{currentPage+1}}/{{numberOfPages()}}
     <button class="btn btn-default" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
         Next
     </button>
+        </div>
+        
     </div>
 </div>

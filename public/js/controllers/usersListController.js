@@ -2,39 +2,38 @@ angular.module('userController2', [])
 
 .controller('usersList', function($scope, User) {
 
-	$scope.currentPage = 0;
+	 User.get()
+        .success(function(data) {
+            $scope.users = data;
+        })
+        .error(function(data) {
+            alert('Error: ' + data);
+        });
+
+    $scope.currentPage = 0;
     $scope.pageSize = 3;
 
-     $scope.numberOfPages=function(){
-        return Math.ceil($scope.getData().length/$scope.pageSize);                
+    $scope.getData = function() {
+        return $scope.users;
     }
 
-    $scope.getData = function () {
-    	return $scope.users;
-    }
-	  
-       User.get()
-            .success(function(data) {
-                $scope.users = data;
-            })
-            .error(function(data) {
-                alert('Error: ' + data);
-            });
+    console.log($scope.getData());
 
-                  $scope.deleteUser = function(id) {
-            User.delete(id)
-                .success(function(data) {
-                    $scope.users = data;
-                    $location.path('/users');
-                })
-                .error(function(data) {
-                    alert('Error: ' + data);
-                });
-        };
+    $scope.numberOfPages = function() {
+    	if ($scope.users !== undefined)
+        return Math.ceil($scope.users.length / $scope.pageSize);
+    }
+
+    
+   
+
+  
 
 }).filter('startFrom', function() {
     return function(input, start) {
         start = +start; //parse to int
+        
+        if (input !== undefined)
         return input.slice(start);
     }
 });
