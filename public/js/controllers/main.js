@@ -1,6 +1,6 @@
 angular.module('userController', ['ngRoute'])
 
-.controller('mainController', function($scope, $route, $routeParams, User) {
+.controller('mainController', function($scope, $route, $routeParams,$location, User) {
         $scope.$route = $route;
     
         $scope.$routeParams = $routeParams;
@@ -16,6 +16,7 @@ angular.module('userController', ['ngRoute'])
             User.delete(id)
                 .success(function(data) {
                     $scope.users = data;
+                    $location.path('/users');
                 })
                 .error(function(data) {
                     alert('Error: ' + data);
